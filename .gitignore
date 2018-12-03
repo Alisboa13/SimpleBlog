@@ -1,3 +1,4 @@
 .vimrc
 env/*
-
+.*.swp
+.*.swo
