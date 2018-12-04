@@ -11,7 +11,7 @@ import { FrontPageComponent } from './components/front-page/front-page.component
 import { BlogFormPageComponent } from './components/blog-form-page/blog-form-page.component';
 import { BlogPageComponent } from './components/blog-page/blog-page.component';
 import { RouterModule } from "@angular/router";
-import { MatToolbarModule, MatIconModule } from "@angular/material";
+import { MatToolbarModule, MatIconModule, MatMenuModule } from "@angular/material";
 
 @NgModule({
   declarations: [
@@ -28,6 +28,7 @@ import { MatToolbarModule, MatIconModule } from "@angular/material";
     RouterModule, 
     MatToolbarModule,
     MatIconModule,
+    MatMenuModule,
     BrowserModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(
