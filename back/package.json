@@ -9,9 +9,16 @@
   "author": "Alan Lisboa",
   "license": "MIT",
   "dependencies": {
+    "@types/body-parser": "^1.17.0",
+    "@types/express": "^4.16.0",
+    "@types/node": "^10.12.12",
     "bcrypt": "^3.0.2",
+    "body-parser": "^1.18.3",
     "express": "^4.16.4",
+    "mysql": "^2.16.0",
     "node-uuid": "^1.4.8",
+    "reflect-metadata": "^0.1.12",
+    "typeorm": "^0.2.9",
     "waterline": "^0.13.6",
     "waterline-mysql": "^0.6.0"
   }
