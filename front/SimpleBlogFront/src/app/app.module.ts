@@ -10,6 +10,8 @@ import { RecoverPageComponent } from './components/recover-page/recover-page.com
 import { FrontPageComponent } from './components/front-page/front-page.component';
 import { BlogFormPageComponent } from './components/blog-form-page/blog-form-page.component';
 import { BlogPageComponent } from './components/blog-page/blog-page.component';
+import { RouterModule } from "@angular/router";
+import { MatToolbarModule, MatIconModule } from "@angular/material";
 
 @NgModule({
   declarations: [
@@ -23,8 +25,28 @@ import { BlogPageComponent } from './components/blog-page/blog-page.component';
     BlogPageComponent
   ],
   imports: [
+    RouterModule, 
+    MatToolbarModule,
+    MatIconModule,
     BrowserModule,
     BrowserAnimationsModule,
+    RouterModule.forRoot(
+      [
+        {
+          path : '',
+          component: FrontPageComponent
+        },
+        {
+          path : 'login',
+          component: LoginPageComponent
+        },
+        {
+          path : 'register',
+          component: RegisterPageComponent,
+        }
+      ],
+      {}
+    )
   ],
   providers: [],
   bootstrap: [AppComponent]
