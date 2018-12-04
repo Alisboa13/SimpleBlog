@@ -18,8 +18,9 @@
     "mysql": "^2.16.0",
     "node-uuid": "^1.4.8",
     "reflect-metadata": "^0.1.12",
-    "typeorm": "^0.2.9",
-    "waterline": "^0.13.6",
-    "waterline-mysql": "^0.6.0"
+    "typeorm": "^0.2.9"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^3.0.0"
   }
 }
