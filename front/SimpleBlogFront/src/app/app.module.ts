@@ -11,7 +11,9 @@ import { FrontPageComponent } from './components/front-page/front-page.component
 import { BlogFormPageComponent } from './components/blog-form-page/blog-form-page.component';
 import { BlogPageComponent } from './components/blog-page/blog-page.component';
 import { RouterModule } from "@angular/router";
-import { MatToolbarModule, MatIconModule, MatMenuModule } from "@angular/material";
+import { MatToolbarModule, MatIconModule, MatMenuModule, MatCardModule, MatButtonModule } from "@angular/material";
+import { BlogCardComponent } from './components/blog-card/blog-card.component';
+
 
 @NgModule({
   declarations: [
@@ -22,13 +24,16 @@ import { MatToolbarModule, MatIconModule, MatMenuModule } from "@angular/materia
     RecoverPageComponent,
     FrontPageComponent,
     BlogFormPageComponent,
-    BlogPageComponent
+    BlogPageComponent,
+    BlogCardComponent
   ],
   imports: [
     RouterModule, 
     MatToolbarModule,
     MatIconModule,
     MatMenuModule,
+    MatCardModule,
+    MatButtonModule,
     BrowserModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(
