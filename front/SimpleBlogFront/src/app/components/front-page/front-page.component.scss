@@ -1,0 +1,16 @@
+.body{
+    display: flex;
+}
+.blogs{
+    order: 0;
+    flex-grow: 3;
+    border:10px;
+    margin: auto;
+}
+.right-bar{
+    order:1;
+    flex-grow: 1;
+    flex-basis: 10%;
+    margin: auto;
+    width: 100px;
+}

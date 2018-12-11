@@ -43,7 +43,7 @@ COMMENT = @Blog TItle
           by Username
           BODY = [256]
 
-post v1 objective Login ol
+post v1 objective Login Modal
 
 # 4
 Basic models and ORM setup done.

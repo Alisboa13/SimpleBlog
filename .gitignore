@@ -5,3 +5,4 @@ env/*
 */node_modules/*
 front7SimpleBlogFront/node_modules
 back/node_modules
+back/env/*|
