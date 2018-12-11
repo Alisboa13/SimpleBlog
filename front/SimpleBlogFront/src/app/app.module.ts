@@ -13,6 +13,8 @@ import { BlogPageComponent } from './components/blog-page/blog-page.component';
 import { RouterModule } from "@angular/router";
 import { MatToolbarModule, MatIconModule, MatMenuModule, MatCardModule, MatButtonModule } from "@angular/material";
 import { BlogCardComponent } from './components/blog-card/blog-card.component';
+import { CommentCardComponent } from './components/comment-card/comment-card.component';
+import { CommentFormComponent } from './components/comment-form/comment-form.component';
 
 
 @NgModule({
@@ -25,7 +27,9 @@ import { BlogCardComponent } from './components/blog-card/blog-card.component';
     FrontPageComponent,
     BlogFormPageComponent,
     BlogPageComponent,
-    BlogCardComponent
+    BlogCardComponent,
+    CommentCardComponent,
+    CommentFormComponent
   ],
   imports: [
     RouterModule, 
@@ -49,6 +53,14 @@ import { BlogCardComponent } from './components/blog-card/blog-card.component';
         {
           path : 'register',
           component: RegisterPageComponent,
+        },
+        {
+          path : 'blog',
+          component : BlogPageComponent,
+        },
+        {
+          path : 'blog/create',
+          component : BlogFormPageComponent
         }
       ],
       {}
