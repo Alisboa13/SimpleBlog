@@ -1,0 +1,31 @@
+{
+  "name": "bunny",
+  "base": "User",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {},
+  "validations": [],
+  "relations": {
+    "blogs": {
+      "type": "hasMany",
+      "model": "blog",
+      "foreignKey": "creatorID"
+    },
+    "comments": {
+      "type": "hasMany",
+      "model": "comment",
+      "foreignKey": "creatorID"
+    }
+  },
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    }
+  ],
+  "methods": {}
+}

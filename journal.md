@@ -51,3 +51,9 @@ Working on API
 *Sigh* will use Loopback framework.
 
 Go Back to work on the front
+post v1 objective Login Modal
+
+# 11 
+went back to work. The basic forms for the auth are ready.
+Working in syncing the lb backend to the angular app
+
