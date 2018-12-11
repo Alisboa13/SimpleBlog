@@ -1,0 +1,9 @@
+.login-body{
+    display:flex;
+    flex-direction: column;
+    padding:30px;
+}
+
+.login-body > * {
+    width: 100%;
+}

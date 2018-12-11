@@ -8,6 +8,12 @@ export interface Credentials{
   password: string;
 }
 
+interface signup{
+  username: string;
+  email: string;
+  password: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -16,6 +22,7 @@ export class AuthService {
   constructor(private http: HttpClient, private router:Router) { }
 
   private static AUTHORIZATION_API= '/bunnies/login';
+  private static SIGNUP_API = '/bunnies'
 
 
   public auth(credential : Credentials): Observable<boolean>{
@@ -28,6 +35,20 @@ export class AuthService {
           this.router.navigate(['/']);
           
         }, 
+        (error: any) => {
+          //Failure
+        }
+      )
+    });
+  }
+
+  public register(credential : signup): Observable<boolean>{
+    return Observable.create(observer => {
+      this.http.post<any>(AuthService.SIGNUP_API, credential).subscribe(
+        (data : any) => {
+          //Success
+
+        },
         (error: any) => {
           //Failure
         }

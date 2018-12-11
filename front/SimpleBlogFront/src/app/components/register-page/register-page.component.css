@@ -1,0 +1,9 @@
+.signup-body{
+    display:flex;
+    flex-direction: column;
+    padding:30px;
+}
+
+.signup-body > * {
+    width: 100%;
+}
