@@ -1,4 +1,5 @@
 'use strictA';
+var path = require('path');
 var senderAddress = "AlanDeniLisboa@gmail.com";
 
 module.exports = function(Bunny) {
@@ -7,14 +8,14 @@ module.exports = function(Bunny) {
       type: 'email',
       to: user.email,
       from: senderAddress,
-      template: path.resovle(__dirname, '../views/virify.ejs'),
+      template: path.resolve(__dirname, '../views/verify.ejs'),
       redirect: '/verified',
       user: user
     };
 
     user.verify(options, function(err, response) {
       if ( err ) {
-        User.deleteById(user.id);
+        Bunny.deleteById(user.id);
         return next(err);
       }
       context.res.sender('response', {
