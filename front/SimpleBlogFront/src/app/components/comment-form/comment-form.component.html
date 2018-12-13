@@ -3,7 +3,7 @@
     <mat-form-field>
       <textarea matInput formControlName="content" #content maxlength="256" placeholder="Comment" required></textarea>
       <mat-error *ngIf="commentForm.invalid">Content is required</mat-error>
-      <mat-hint align="end">{{input.value?.length || 0}}/256</mat-hint>
+      <mat-hint align="end">{{content.value?.length || 0}}/256</mat-hint>
     </mat-form-field>
     <button mat-button type="submit" [disabled]="commentForm.invalid">SUBMIT</button>
   </form>

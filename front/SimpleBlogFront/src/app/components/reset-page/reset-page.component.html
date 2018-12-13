@@ -1,12 +1,12 @@
 <form [formGroup]="resetForm" class="form-body" (ngSubmit)="onSubmit()">
   <mat-form-field>
       <input matInput placeholder="Password" maxlength="256" minlength="6" autocomplete="new-password" formControlName="password" [type]="hidePassword ? 'password' : 'text'" required>
-      <mat-icon matSuffix (click)="hidePassword = !hidePassword">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      <mat-icon matSuffix (click)="hidePassword = !hidePassword">{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
       <mat-error *ngIf="resetForm.get('password').invalid">Password is required</mat-error>
     </mat-form-field>
     <mat-form-field>
       <input matInput placeholder="Confirm Password" autocomplete="new-password" formControlName="cpass" [type]="hidecpass ? 'password' : 'text'" [errorStateMatcher]="matcher">
-      <mat-icon matSuffix (click)="hidecpass = !hidecpass">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      <mat-icon matSuffix (click)="hidecpass = !hidecpass">{{hidecpass ? 'visibility_off' : 'visibility'}}</mat-icon>
       <mat-error *ngIf="resetForm.hasError('notSame')">Passwords don't match</mat-error>
     </mat-form-field>
     <div class="buttons">

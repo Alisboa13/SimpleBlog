@@ -10,7 +10,9 @@
 
 .comment-card > img{
     display: block;
-    max-height: 300px;
+    max-width: -moz-available;          /* WebKit-based browsers will ignore this. */
+    max-width: -webkit-fill-available;  /* Mozilla-based browsers will ignore this. */
+    max-width: fit-content;
     width: auto;
     height: auto;
 }

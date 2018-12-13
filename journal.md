@@ -66,3 +66,13 @@ Finished basic features :D.
 I need to work on the registry and email thingys. Test inputs and make the security testing today night, for tomorrow morning.
 I need to create the installing script.
 
+Priority Features Done. C:!
+I need to fix the max with of the md images, but that is for latter.
+
+Some know bugs:
+  - No feedback on errors
+  - One of the boot scripts must be remove after the first season otherwise it deletes all the tables.
+  - Can't edit things.
+
+These are features for other time!
+

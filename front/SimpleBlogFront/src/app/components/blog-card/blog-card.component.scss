@@ -8,10 +8,10 @@
     width: 100%;
 }
 
-.example-card > img{
+.mkcontent > * img {
     display: block;
-    max-width: 100%;
-    max-height: 600px;
-    width: auto;
+    max-width: fit-content;
+    max-width: -moz-available;          /* WebKit-based browsers will ignore this. */
+    max-width: -webkit-fill-available;  /* Mozilla-based browsers will ignore this. */
     height: auto;
 }

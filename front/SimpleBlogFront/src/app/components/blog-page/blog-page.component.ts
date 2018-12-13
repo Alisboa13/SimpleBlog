@@ -9,7 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class BlogPageComponent implements OnInit {
 
-  private bid: number;
+  bid: number;
   comments : any[];
 
   constructor(

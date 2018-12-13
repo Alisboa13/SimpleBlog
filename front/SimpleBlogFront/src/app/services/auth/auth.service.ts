@@ -146,5 +146,21 @@ export class AuthService {
     return JSON.parse(user);
   }
 
+  public confirm(uid: string, token: string):Observable<boolean>{
+    return Observable.create(observer => {
+      this.http.get<any>(Config.USER_API + 'confirm', {params: {uid: uid, token: token}}).subscribe(
+        (data:any) => {
+          observer.next(true);
+          observer.complete();
+        },
+        (error:any) => {
+          observer.next(new Error("Error confirming."));
+          observer.complete()
+        }
+      )
+    })
+
+  }
+
 
 }

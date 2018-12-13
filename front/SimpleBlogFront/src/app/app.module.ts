@@ -21,9 +21,10 @@ import { HttpClientModule, HTTP_INTERCEPTORS, HttpClient } from '@angular/common
 import { AccessTokenInterceptor } from './interceptors/AccessTokenInterceptor';
 import { BlogService } from './services/blog/blog.service';
 import { UserService } from './services/user/user.service';
-import { MarkdownModule } from "ngx-markdown";
+import { MarkdownModule, MarkedOptions } from "ngx-markdown";
 import { CommentService } from './services/comment/comment.service';
 import { ResetPageComponent } from './components/reset-page/reset-page.component';
+import { VerifyComponent } from './components/verify/verify.component';
 
 @NgModule({
   declarations: [
@@ -38,10 +39,22 @@ import { ResetPageComponent } from './components/reset-page/reset-page.component
     BlogCardComponent,
     CommentCardComponent,
     CommentFormComponent,
-    ResetPageComponent
+    ResetPageComponent,
+    VerifyComponent
   ],
   imports: [
-    MarkdownModule.forRoot({ loader: HttpClient}),
+    MarkdownModule.forRoot({
+       loader: HttpClient,
+       markedOptions: {
+        provide: MarkedOptions,
+        useValue: {
+          headerIds: true,
+          sanitize: true,
+          gfm: true,
+          tables: true
+        }
+       }
+      }),
     HttpClientModule,
     RouterModule, 
     MatToolbarModule,
@@ -63,6 +76,10 @@ import { ResetPageComponent } from './components/reset-page/reset-page.component
         {
           path : '',
           component: FrontPageComponent
+        },
+        {
+          path: 'verify',
+          component: VerifyComponent
         },
         {
           path : 'login',
