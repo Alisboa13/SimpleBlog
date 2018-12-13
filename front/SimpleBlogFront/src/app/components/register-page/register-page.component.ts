@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormControl, ValidatorFn, AbstractControl, ValidationErrors, FormBuilder, FormGroupDirective, NgForm } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material';
+import { AuthService } from 'src/app/services/auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register-page',
@@ -12,7 +14,7 @@ export class RegisterPageComponent implements OnInit {
   signupForm : FormGroup;
   matcher = new MyErrorStateMatcher();
 
-  constructor(private fb: FormBuilder) { 
+  constructor(private fb: FormBuilder, private auth: AuthService, private router:Router) { 
 
     this.signupForm = fb.group({
       username: ['', [Validators.required]],
@@ -63,7 +65,17 @@ export class RegisterPageComponent implements OnInit {
   }
 
   onSubmit(){
-
+    const data = this.signupForm.value;
+    this.auth.register({username: data.username, email:data.email, password:data.password}).subscribe(
+      (data: any) => {
+        console.log(data)
+        this.router.navigate(['/']);
+      },
+      (error: any) => {
+        console.error(error)
+      }
+    )
+    this.signupForm.reset();
   }
 
 }

@@ -57,3 +57,7 @@ post v1 objective Login Modal
 went back to work. The basic forms for the auth are ready.
 Working in syncing the lb backend to the angular app
 
+# 12 
+Token injector working. Need to fix the register form. it doen't seems to end and doesn't get cleared.
+working on other forms
+

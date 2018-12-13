@@ -1,3 +1,9 @@
 <mat-card class="comment-form">
-  <span>Comment: </span><input type="text" id="content" class="content-form">
+  <form [formGroup]="commentForm" class="form-body" (ngSubmit)="onSubmit()">
+    <mat-form-field>
+      <textarea matInput formControlName="content" placeholder="Comment" required></textarea>
+      <mat-error *ngIf="commentForm.invalid">Content is required</mat-error>
+    </mat-form-field>
+    <button mat-button type="submit" [disabled]="commentForm.invalid">SUBMIT</button>
+  </form>
 </mat-card>

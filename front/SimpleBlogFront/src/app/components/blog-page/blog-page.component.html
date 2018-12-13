@@ -1,6 +1,7 @@
 <mat-card class="blogpage">
-  <app-blog-card></app-blog-card>
-  <app-comment-form></app-comment-form>
-  <app-comment-card></app-comment-card>
-  <app-comment-card></app-comment-card>
+  <app-blog-card [blogid]="bid"></app-blog-card>
+  <app-comment-form [blogid]="bid"></app-comment-form>
+  <ng-template ngFor let-comment [ngForOf]="comments">
+    <app-comment-card [comment]="comment"></app-comment-card>
+  </ng-template>
 </mat-card>

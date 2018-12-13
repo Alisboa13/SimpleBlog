@@ -1,4 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { BlogService } from 'src/app/services/blog/blog.service';
+import { Observable } from 'rxjs';
+import { UserService } from 'src/app/services/user/user.service';
+
+
+
+export interface Blog{
+  title: string;
+  content: string;
+  id: number;
+  creatorID: number;
+}
 
 @Component({
   selector: 'app-blog-card',
@@ -7,9 +19,61 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BlogCardComponent implements OnInit {
 
-  constructor() { }
+  constructor(private blog: BlogService,
+    private userService: UserService) { }
+
+  @Input() public blogid: number;
+  @Input() public Blog: Blog | null;
+
+  //Shown data
+  title: string;
+  creatorName: string;
+  content: string;
 
   ngOnInit() {
+    if(!this.Blog){
+      //this.placeholder();
+      this.downloadData();
+    }
+    else{
+      this.getCreatorName(this.Blog.creatorID);
+      this.title = this.Blog.title;
+      this.content = this.Blog.content;
+    }
+  }
+
+  placeholder(){
+    this.title = "title";
+    this.content = "...";
+    this.creatorName = "unknow";
+  }
+
+  getCreatorName(id: number){
+    this.userService.getUsername(id).subscribe(
+      (data: any) => {
+        this.creatorName = data;
+      },
+      (error: any) => {
+        console.log(error);
+        this.creatorName = "Unkown";
+      }
+    )
+  }
+
+  downloadData(){
+    this.blog.getBlog(this.blogid).subscribe(
+      (data: any) => {
+        console.log(data);
+        this.title = data.title;
+        this.content = data.content;
+        this.getCreatorName(data.creatorID);
+      },
+      (error: any) => {
+        this.title = "error";
+        this.content = "Error";
+        this.creatorName = "Error";
+      }
+    )
   }
 
 }

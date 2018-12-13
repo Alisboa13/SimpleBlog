@@ -1,11 +1,9 @@
 <mat-card class="comment-card">
   <mat-card-header>
     <div mat-card-avatar class="comment-avatar"></div>
-    <mat-card-subtitle>By @username</mat-card-subtitle>
+    <mat-card-subtitle>By @{{username}}</mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>
-    <p>
-      This is a comment
-    </p>
+    <markdown ngPreserveWhitespaces [data]="comment.content"></markdown>
   </mat-card-content>
 </mat-card>

@@ -16,7 +16,13 @@ import { BlogCardComponent } from './components/blog-card/blog-card.component';
 import { CommentCardComponent } from './components/comment-card/comment-card.component';
 import { CommentFormComponent } from './components/comment-form/comment-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { AuthService } from './services/auth/auth.service';
+import { HttpClientModule, HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
+import { AccessTokenInterceptor } from './interceptors/AccessTokenInterceptor';
+import { BlogService } from './services/blog/blog.service';
+import { UserService } from './services/user/user.service';
+import { MarkdownModule } from "ngx-markdown";
+import { CommentService } from './services/comment/comment.service';
 
 @NgModule({
   declarations: [
@@ -33,6 +39,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     CommentFormComponent
   ],
   imports: [
+    MarkdownModule.forRoot({ loader: HttpClient}),
+    HttpClientModule,
     RouterModule, 
     MatToolbarModule,
     MatIconModule,
@@ -59,18 +67,32 @@ import { ReactiveFormsModule } from '@angular/forms';
           component: RegisterPageComponent,
         },
         {
-          path : 'blog',
+          path : 'blog/create',
+          component : BlogFormPageComponent
+        },
+        {
+          path : 'blog/:id',
           component : BlogPageComponent,
         },
         {
-          path : 'blog/create',
-          component : BlogFormPageComponent
+          path : "***",
+          component: FrontPageComponent
         }
       ],
       {}
     )
   ],
-  providers: [],
+  providers: [
+    AuthService,
+    UserService,
+    CommentService,
+    BlogService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AccessTokenInterceptor,
+      multi: true,
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
