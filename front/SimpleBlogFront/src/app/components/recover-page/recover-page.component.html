@@ -1,3 +1,10 @@
-<p>
-  recover-page works!
-</p>
+<form [formGroup]="recoveryForm" class="form-body" (ngSubmit)="onSubmit()">
+  <mat-form-field>
+      <input matInput autocomplete="username" placeholder="Enter your email" formControlName="email" required>
+      <mat-error *ngIf="recoveryForm.get('email').invalid">Email is invalid</mat-error>
+  </mat-form-field>
+  <div class="buttons">
+  <button mat-button type="submit" [disabled]='!recoveryForm.valid'>SUBMIT</button>
+  <button mat-button type="button" [disabled]="true"></button>
+  </div>
+</form>

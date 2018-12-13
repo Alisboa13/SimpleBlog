@@ -12,9 +12,9 @@ export class UserService {
 
   getUsername(id:number):Observable<any>{
     return Observable.create(observer => {
-      this.http.get<any>(Config.USER_API + id.toString()).subscribe(
+      this.http.get<any>(Config.USER_API + id.toString() + "/getName").subscribe(
         (data: any) => {
-          observer.next(data.username);
+          observer.next(data.name);
           observer.complete()   
         },
         (error: any) => {

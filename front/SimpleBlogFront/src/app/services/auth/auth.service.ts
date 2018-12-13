@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Observable} from 'rxjs';
+import { Config } from 'src/app/shared/Config';
 
 export interface Credentials{
   email: string;
@@ -14,6 +15,14 @@ interface signup{
   password: string;
 }
 
+interface Email{
+  email: string;
+}
+
+interface NewPassword{
+  newPassword: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -21,13 +30,42 @@ export class AuthService {
 
   constructor(private http: HttpClient, private router:Router) { }
 
-  private static AUTHORIZATION_API= 'http://10.0.0.2:3000/api/bunnies/login';
-  private static USER_API = 'http://10.0.0.2:3000/api/bunnies'
+  public reset(email: Email): Observable<boolean>{
+    return Observable.create(observer => {
+      this.http.post<any>(Config.USER_API + 'reset', email).subscribe(
+        (data: any) => {
+          observer.next(true);
+          observer.complete();
+        },
+        (error: any) => {
+          observer.error(error);
+          observer.complete();
+        }
+      )
+    })
+  }
+
+  public newPassword(newpass: NewPassword, ps: any | null ): Observable<boolean>{
+    let actions = (ps) ? this.http.post<any>(Config.USER_API + 'reset-password', newpass, { params: { access_token: ps.access_token}}) :
+                        this.http.post<any>(Config.USER_API + 'reset-password', newpass);
+    return Observable.create(observer => {
+      actions.subscribe(
+        (data: any) => {
+          observer.next(true);
+          observer.complete();
+        },
+        (error: any) => {
+          observer.error(error);
+          observer.complete();
+        }
+      )
+    })
+  }
 
 
   public auth(credential : Credentials): Observable<boolean>{
     return Observable.create(observer => {
-      this.http.post<any>(AuthService.AUTHORIZATION_API, credential).subscribe(
+      this.http.post<any>(Config.AUTHORIZATION_API, credential).subscribe(
         (data : any) => {
           //Success
           const token: string = data;
@@ -63,7 +101,7 @@ export class AuthService {
 
   public register(credential : signup): Observable<boolean>{
     return Observable.create(observer => {
-      this.http.post<any>(AuthService.USER_API, credential).subscribe(
+      this.http.post<any>(Config.USER_API, credential).subscribe(
         (data : any) => {
           //Success
           observer.next(true);
@@ -80,7 +118,7 @@ export class AuthService {
   }
 
   public getUser(id : number){
-    const url = AuthService.USER_API + '/' + id.toString();
+    const url = Config.USER_API + '/' + id.toString();
     return this.http.get<any>(url)
   }
 

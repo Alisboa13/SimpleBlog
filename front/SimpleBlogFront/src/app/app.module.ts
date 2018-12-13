@@ -11,7 +11,7 @@ import { FrontPageComponent } from './components/front-page/front-page.component
 import { BlogFormPageComponent } from './components/blog-form-page/blog-form-page.component';
 import { BlogPageComponent } from './components/blog-page/blog-page.component';
 import { RouterModule } from "@angular/router";
-import { MatToolbarModule, MatIconModule, MatMenuModule, MatCardModule, MatButtonModule, MatFormFieldModule, MatInputModule } from "@angular/material";
+import { MatToolbarModule, MatIconModule, MatMenuModule, MatCardModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatSidenavModule, MatDividerModule, MatListModule, MatSnackBarModule } from "@angular/material";
 import { BlogCardComponent } from './components/blog-card/blog-card.component';
 import { CommentCardComponent } from './components/comment-card/comment-card.component';
 import { CommentFormComponent } from './components/comment-form/comment-form.component';
@@ -23,6 +23,7 @@ import { BlogService } from './services/blog/blog.service';
 import { UserService } from './services/user/user.service';
 import { MarkdownModule } from "ngx-markdown";
 import { CommentService } from './services/comment/comment.service';
+import { ResetPageComponent } from './components/reset-page/reset-page.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { CommentService } from './services/comment/comment.service';
     BlogPageComponent,
     BlogCardComponent,
     CommentCardComponent,
-    CommentFormComponent
+    CommentFormComponent,
+    ResetPageComponent
   ],
   imports: [
     MarkdownModule.forRoot({ loader: HttpClient}),
@@ -44,9 +46,13 @@ import { CommentService } from './services/comment/comment.service';
     RouterModule, 
     MatToolbarModule,
     MatIconModule,
+    MatSnackBarModule,
     MatMenuModule,
     MatCardModule,
     MatFormFieldModule,
+    MatSidenavModule,
+    MatListModule,
+    MatDividerModule,
     MatButtonModule,
     MatInputModule,
     BrowserModule,
@@ -65,6 +71,14 @@ import { CommentService } from './services/comment/comment.service';
         {
           path : 'register',
           component: RegisterPageComponent,
+        },
+        {
+          path : "reset-password",
+          component: ResetPageComponent,
+        },
+        {
+          path : "recover",
+          component: RecoverPageComponent,
         },
         {
           path : 'blog/create',

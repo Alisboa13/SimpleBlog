@@ -1,7 +1,9 @@
-<mat-card class="blogpage">
   <app-blog-card [blogid]="bid"></app-blog-card>
+  <div class="card-container">
   <app-comment-form [blogid]="bid"></app-comment-form>
+  </div>
   <ng-template ngFor let-comment [ngForOf]="comments">
+    <div class="card-container">
     <app-comment-card [comment]="comment"></app-comment-card>
+    </div>
   </ng-template>
-</mat-card>

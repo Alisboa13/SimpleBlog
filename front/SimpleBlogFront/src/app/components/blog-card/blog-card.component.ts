@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { BlogService } from 'src/app/services/blog/blog.service';
 import { Observable } from 'rxjs';
 import { UserService } from 'src/app/services/user/user.service';
+import { Router } from '@angular/router';
 
 
 
@@ -20,7 +21,8 @@ export interface Blog{
 export class BlogCardComponent implements OnInit {
 
   constructor(private blog: BlogService,
-    private userService: UserService) { }
+    private userService: UserService,
+    private router: Router) { }
 
   @Input() public blogid: number;
   @Input() public Blog: Blog | null;
@@ -63,7 +65,6 @@ export class BlogCardComponent implements OnInit {
   downloadData(){
     this.blog.getBlog(this.blogid).subscribe(
       (data: any) => {
-        console.log(data);
         this.title = data.title;
         this.content = data.content;
         this.getCreatorName(data.creatorID);
@@ -74,6 +75,15 @@ export class BlogCardComponent implements OnInit {
         this.creatorName = "Error";
       }
     )
+  }
+
+  goToPage(){
+    if(!this.Blog){
+      this.router.navigate([`/blog/${this.blogid.toString()}`])
+    }
+    else{
+      this.router.navigate([`/blog/${this.Blog.id.toString()}`])
+    }
   }
 
 }

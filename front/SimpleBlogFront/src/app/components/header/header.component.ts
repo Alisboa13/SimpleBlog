@@ -31,6 +31,10 @@ export class HeaderComponent implements OnInit {
     }
   }
 
+  newBlog(){
+    this.router.navigate(['/blog/create']);
+  }
+
   goToSignup(){
     this.router.navigate(['/register']);
   }
@@ -41,5 +45,9 @@ export class HeaderComponent implements OnInit {
 
   logoff(){
     this.auth.logout();
+  }
+
+  goHome(){
+    this.router.navigate(['/'])
   }
 }

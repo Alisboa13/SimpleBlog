@@ -1,5 +1,6 @@
 <mat-toolbar color="primary">
-  <span>SimpleBlogLogo</span>
+  <button mat-button (click)="goHome()"><span class="mat-title">SimpleBlogLogo</span></button>
+  <button *ngIf='isLogged()' mat-button (click)="newBlog()"><span class="mat-title">Write new blog</span></button>
   <span class='example-spacer'></span>
   <div class="guest" *ngIf="!isLogged()">
     <button mat-button [matMenuTriggerFor]="menu"><span>Guest</span> <mat-icon>vpn_key</mat-icon> </button>

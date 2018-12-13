@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { CommentService } from 'src/app/services/comment/comment.service';
+import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-comment-form',
@@ -15,19 +17,24 @@ export class CommentFormComponent implements OnInit {
     content : new FormControl('', [Validators.required])
   })
 
-  constructor(private commentService:CommentService) { }
+  constructor(
+    private commentService:CommentService,
+    private router: Router,
+    private snackbar: MatSnackBar
+    ) { }
 
   ngOnInit() {
   }
 
   onSubmit(){
-    console.log("start")
     let data = this.commentForm.value;
     this.commentService.postComment({content: data.content, blogId:this.blogid}).subscribe(
       (data:any) => {
-        console.log(data);
+        this.snackbar.open("Comment posted.", "OK", {duration: 2000})
+        window.location.reload();
       },
       (error:any) => {
+        this.snackbar.open("Couln't create commment.", "OK", {duration: 2000});
         console.log(error);
       }
     )

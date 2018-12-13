@@ -61,3 +61,8 @@ Working in syncing the lb backend to the angular app
 Token injector working. Need to fix the register form. it doen't seems to end and doesn't get cleared.
 working on other forms
 
+# 13
+Finished basic features :D.
+I need to work on the registry and email thingys. Test inputs and make the security testing today night, for tomorrow morning.
+I need to create the installing script.
+

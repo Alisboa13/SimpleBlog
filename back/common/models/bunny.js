@@ -1,6 +1,11 @@
 'use strictA';
+const utils = require('loopback/lib/utils');
 var path = require('path');
 var senderAddress = "AlanDeniLisboa@gmail.com";
+const config =  {
+  host: "localhost",
+  port: "4200"
+};
 
 module.exports = function(Bunny) {
   Bunny.afterRemote('create', function(context, user, next) {
@@ -30,8 +35,8 @@ module.exports = function(Bunny) {
   
     Bunny.on('resetPasswordRequest', function(info) {
     var url = 'http://' + config.host + ':' + config.port + '/reset-password';
-    var html = 'Click <a href="' + url + '?access_token=' +
-        info.accessToken.id + '">here</a> to reset your password';
+    var d = url + '?access_token='+info.accessToken.id;
+    var html = 'Click <a href="' + d + '">here</a> to reset your password. Or enter: ' + d + " in you browser.";
 
     Bunny.app.models.Email.send({
       to: info.email,
@@ -43,5 +48,19 @@ module.exports = function(Bunny) {
       console.log('> sending password reset email to:', info.email);
     });
 });
+  Bunny.getName = function(shopId, cb) {
+    Bunny.findById( shopId, function (err, instance) {
+        var response = instance;
+        cb(null, response.username);
+    });
+  }
 
-};
+    Bunny.remoteMethod (
+        'getName',
+        {
+          http: {path: '/:id/getname', verb: 'get'},
+          accepts: {arg: 'id', type: 'number', required: true },
+          returns: {arg: 'name', type: 'string'}
+        }
+    );
+}

@@ -2,16 +2,12 @@
   <div class="title mat-title"> Front Page Title </div>
   <div class="body mat-body">
     <div class="blogs">
-      <ngTemplate ngFor let-blog [ngForOf]="blogs">
-        <app-blog-card [blog]="blog"></app-blog-card>
-      </ngTemplate>
-    </div>
-    <div class="right-bar">
-        <p>Vertical</p>
-        <p>Data</p>
+      <ng-template  ngFor let-blog [ngForOf]="blogs">
+        <div class="blog-container">
+        <app-blog-card [Blog]="blog"></app-blog-card>
+        </div>
+        <mat-divider></mat-divider>
+      </ng-template >
     </div>
   </div>
-  <p>
-    front-page works!
-  </p>
 </div>

@@ -16,18 +16,16 @@ export class BlogService {
 
   constructor(private http:HttpClient, private router:Router) {  }
 
-  public create(blog: Blog): Observable<boolean>{
+  public create(blog: Blog): Observable<any>{
     return Observable.create(observer => {
       this.http.post<any>(Config.BLOG_API, blog).subscribe(
         (data: any) => {
           //Success
-          console.log(data);
-          observer.next(true);
+          observer.next(data);
           observer.complete();
         },
         (error: any) => {
           //Failure
-          console.log(error);
           observer.error(new Error('error'));
           observer.complete();
         }

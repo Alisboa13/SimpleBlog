@@ -9,5 +9,8 @@
       <input autocomplete="current-password" matInput placeholder="Password" formControlName="password" [type]="hide ? 'password' : 'text'" required>
       <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
     </mat-form-field>
+    <div class="buttons">
     <button mat-button type="submit" [disabled]='!loginForm.valid'>SUBMIT</button>
+    <button mat-button type="button" (click)="recover()">RECOVER PASSWORD</button>
+    </div>
   </form>
