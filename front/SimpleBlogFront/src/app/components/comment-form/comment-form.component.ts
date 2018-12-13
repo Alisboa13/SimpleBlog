@@ -14,7 +14,7 @@ export class CommentFormComponent implements OnInit {
   @Input() blogid: number;
 
   commentForm = new FormGroup({
-    content : new FormControl('', [Validators.required])
+    content : new FormControl('', [Validators.required, Validators.maxLength(256)])
   })
 
   constructor(
@@ -27,6 +27,9 @@ export class CommentFormComponent implements OnInit {
   }
 
   onSubmit(){
+    if(this.commentForm.invalid){
+      return;
+    }
     let data = this.commentForm.value;
     this.commentService.postComment({content: data.content, blogId:this.blogid}).subscribe(
       (data:any) => {

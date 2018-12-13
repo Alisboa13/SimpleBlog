@@ -25,7 +25,7 @@ export class ResetPageComponent implements OnInit {
     private router: Router
     ) {
     this.resetForm = this.fb.group({
-      password: ['', Validators.required],
+      password: ['', [Validators.required, Validators.maxLength(256), Validators.minLength(6)]],
       cpass: ['']
     }, {validator: this.checkPassword})
     this.token = this.route.snapshot.queryParams.access_token;

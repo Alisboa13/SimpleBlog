@@ -1,16 +1,16 @@
 <form [formGroup]="signupForm" class="signup-body" (ngSubmit)="onSubmit()">
     <mat-form-field>
-      <input matInput placeholder="Username" autocomplete="username" formControlName="username" required>
-      <mat-error *ngIf="signupForm.get('username').invalid">{{getErrorMessage('username')}}</mat-error>
+      <input matInput placeholder="Username" minlength="3" maxlength="128" autocomplete="username" formControlName="username" required>
+      <mat-error *ngIf="signupForm.get('username').invalid">Username is invalid</mat-error>
     </mat-form-field>
     <mat-form-field>
       <input matInput placeholder="Enter your email" autocomplete="email" formControlName="email" required>
-      <mat-error *ngIf="signupForm.get('email').invalid">{{getErrorMessage('email')}}</mat-error>
+      <mat-error *ngIf="signupForm.get('email').invalid">Email is invalid</mat-error>
     </mat-form-field>
     <mat-form-field>
-      <input matInput placeholder="Password" autocomplete="new-password" formControlName="password" [type]="hidePassword ? 'password' : 'text'" required>
+      <input matInput #password minlength="6" maxlength="256" placeholder="Password" autocomplete="new-password" formControlName="password" [type]="hidePassword ? 'password' : 'text'" required>
       <mat-icon matSuffix (click)="hidePassword = !hidePassword">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-      <mat-error *ngIf="signupForm.get('password').invalid">{{getErrorMessage('password')}}</mat-error>
+      <mat-error *ngIf="signupForm.get('password').invalid">Password is Invalid</mat-error>
     </mat-form-field>
     <mat-form-field>
       <input matInput placeholder="Confirm Password" autocomplete="new-password" formControlName="cpass" [type]="hidecpass ? 'password' : 'text'" [errorStateMatcher]="matcher">

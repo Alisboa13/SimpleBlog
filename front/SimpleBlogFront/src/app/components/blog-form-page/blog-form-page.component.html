@@ -1,13 +1,13 @@
 <mat-card class="blogform">
   <form [formGroup]="blogForm" class="form-body" (ngSubmit)="onSubmit()">
     <mat-form-field>
-      <input matInput placeholder="Enter a title for your blog" formControlName="title" required>
-      <mat-error *ngIf="blogForm.get('title').invalid">A title is required</mat-error>
+      <input matInput placeholder="Enter a title for your blog" maxlength="256" formControlName="title" required>
+      <mat-error *ngIf="blogForm.get('title').invalid">The title is invalid.</mat-error>
     </mat-form-field>
     <mat-form-field>
-      <textarea matInput placeholder="Enter contet for the blog" formControlName="content" required>
+      <textarea matInput placeholder="Enter contet for the blog" minlength="3" formControlName="content" required>
       </textarea>
-      <mat-error *ngIf="blogForm.get('content').invalid">Content is required</mat-error>
+      <mat-error *ngIf="blogForm.get('content').invalid">Content is invalid.</mat-error>
     </mat-form-field>
     <button mat-button type="submit" [disabled]="blogForm.invalid">SUBMIT</button>
   </form>

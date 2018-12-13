@@ -1,8 +1,9 @@
 <mat-card class="comment-form">
   <form [formGroup]="commentForm" class="form-body" (ngSubmit)="onSubmit()">
     <mat-form-field>
-      <textarea matInput formControlName="content" placeholder="Comment" required></textarea>
+      <textarea matInput formControlName="content" #content maxlength="256" placeholder="Comment" required></textarea>
       <mat-error *ngIf="commentForm.invalid">Content is required</mat-error>
+      <mat-hint align="end">{{input.value?.length || 0}}/256</mat-hint>
     </mat-form-field>
     <button mat-button type="submit" [disabled]="commentForm.invalid">SUBMIT</button>
   </form>

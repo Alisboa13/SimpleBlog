@@ -17,9 +17,9 @@ export class RegisterPageComponent implements OnInit {
   constructor(private fb: FormBuilder, private auth: AuthService, private router:Router) { 
 
     this.signupForm = fb.group({
-      username: ['', [Validators.required]],
+      username: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(128)]],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required],
+      password: ['',[ Validators.required, Validators.minLength(6), Validators.maxLength(256)]],
       cpass : ['']
     }, {validators: this.checkPassword});
   // signupForm = new FormGroup({

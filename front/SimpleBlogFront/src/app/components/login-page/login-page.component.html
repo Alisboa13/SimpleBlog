@@ -2,11 +2,11 @@
 
   <form [formGroup]="loginForm" class="login-body" (ngSubmit)="onSubmit()">
     <mat-form-field>
-      <input matInput autocomplete="username" placeholder="Enter your email" formControlName="email" required>
+      <input matInput autocomplete="username" maxlength="256" placeholder="Enter your email" formControlName="email" required>
       <mat-error *ngIf="loginForm.get('email').invalid">{{getErrorMessage()}}</mat-error>
     </mat-form-field>
     <mat-form-field>
-      <input autocomplete="current-password" matInput placeholder="Password" formControlName="password" [type]="hide ? 'password' : 'text'" required>
+      <input autocomplete="current-password" maxlength="256" matInput placeholder="Password" formControlName="password" [type]="hide ? 'password' : 'text'" required>
       <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
     </mat-form-field>
     <div class="buttons">

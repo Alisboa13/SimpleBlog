@@ -18,8 +18,8 @@ export class BlogFormPageComponent implements OnInit {
     ) { }
 
   blogForm = new FormGroup({
-    title: new FormControl('', [Validators.required]),
-    content: new FormControl('', [Validators.required])
+    title: new FormControl('', [Validators.required, Validators.maxLength(256)]),
+    content: new FormControl('', [Validators.required, Validators.minLength(3)])
   })
 
   ngOnInit() {

@@ -6,8 +6,19 @@ const config =  {
   host: "localhost",
   port: "4200"
 };
+const emailre = /^(([^<>()[\]\\.,;:\s@\"]-(\.[^<>()[\]\\.,;:\s@\"]-)*)|(\".-\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]-\.)-[a-zA-Z]{2,}))$/;
 
 module.exports = function(Bunny) {
+  // Validations
+  Bunny.validatesPresenceOf('username', 'email');
+  Bunny.validatesLenghtOf('password', {min:6, max:256, message: {min: 'Password is too short (min:6)', max: 'Password is too long (max:256)'}});
+  Bunny.validatesFormatOf('email', {with: re, message: 'Must provide a valid email'});
+  Bunny.validatesLenghtOf('username', {min: 4, max:128, message: {min: 'username is too short (min:4)', max: "username too long (max: 128)"}});
+  Bunny.validatesLenghtOf('email', {max: 256, message: {max: "Email too long"}});
+  Bunny.validatesUniquenessOf('email', {message: 'email is not unique'});
+  Bunny.validatesUniquenessOf('username', {message: 'Usename is not unique'});
+
+
   Bunny.afterRemote('create', function(context, user, next) {
     var options = {
       type: 'email',
