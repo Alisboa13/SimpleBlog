@@ -76,3 +76,5 @@ Some know bugs:
 
 These are features for other time!
 
+Find new bug:
+  - Text is not wrapped around in the comments.
